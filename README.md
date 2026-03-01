@@ -11,6 +11,13 @@ DMM アフィリエイト API v3 と DUGA API をラップする CLI ツール�
 - エラーメッセージは stderr、JSON は stdout に分離
 - 明確な終了コードでスクリプト・エージェントから扱いやすい設計
 
+## API 登録
+
+各サービスのアフィリエイト会員登録と API 申請が必要です。
+
+- **DMM**: [https://affiliate.dmm.com/](https://affiliate.dmm.com/) から会員登録・API ID を取得してください。
+- **DUGA**: [https://click.duga.jp/aff/40413-01](https://click.duga.jp/aff/40413-01) から登録してください。このリンク経由で登録すると、あなたがアフィリエイト収益を得た際に作者への紹介報酬が発生する場合があります。
+
 ## インストール
 
 ### バイナリをダウンロード（推奨）

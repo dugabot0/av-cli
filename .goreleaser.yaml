@@ -28,22 +28,18 @@ archives:
       - av-cli
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     format: tar.gz
-    format_overrides:
-      - goos: windows
-        format: zip
     files:
       - README.md
-      - LICENSE
 
 nfpms:
   - id: packages
     package_name: av-cli
     builds:
       - av-cli
-    vendor: yourusername
-    homepage: https://github.com/yourusername/av-cli
-    maintainer: yourusername <you@example.com>
-    description: CLI for DMM and DUGA affiliate APIs
+    vendor: dugabot0
+    homepage: https://github.com/dugabot0/av-cli
+    maintainer: dugabot0
+    description: DMM アフィリエイト API v3 と DUGA API をラップする CLI ツール
     license: MIT
     formats:
       - deb
@@ -56,7 +52,7 @@ checksum:
 
 release:
   github:
-    owner: yourusername
+    owner: dugabot0
     name: av-cli
   draft: false
   prerelease: auto
@@ -69,18 +65,3 @@ changelog:
       - "^docs:"
       - "^test:"
       - "^chore:"
-
-brews:
-  - name: av-cli
-    repository:
-      owner: yourusername
-      name: homebrew-tap
-    commit_author:
-      name: goreleaserbot
-      email: goreleaser@example.com
-    homepage: https://github.com/yourusername/av-cli
-    description: CLI for DMM and DUGA affiliate APIs
-    install: |
-      bin.install "av-cli"
-    test: |
-      system "#{bin}/av-cli", "--help"

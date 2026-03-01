@@ -222,7 +222,9 @@ stdout は常に JSON のため、`jq` やエージェントのツール呼び�
 
 ```bash
 # jq でパイプ処理
-av-cli dmm actress --keyword "松本いちか" | jq '.[0].id'
+av-cli dmm actress --keyword "松本いちか" | jq '.actress[0].id'
+av-cli dmm items --keyword "test" | jq '.items[0].title'
+av-cli duga search --keyword "test" | jq '.items[0].item.title'
 
 # エージェント向け: エラー時は stderr にメッセージ、終了コードで判別
 av-cli dmm items --keyword "test" --quiet

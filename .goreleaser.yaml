@@ -1,0 +1,86 @@
+version: 2
+
+project_name: av-cli
+
+before:
+  hooks:
+    - go mod tidy
+    - go test ./...
+
+builds:
+  - id: av-cli
+    main: ./main.go
+    binary: av-cli
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: av-cli
+    builds:
+      - av-cli
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - LICENSE
+
+nfpms:
+  - id: packages
+    package_name: av-cli
+    builds:
+      - av-cli
+    vendor: yourusername
+    homepage: https://github.com/yourusername/av-cli
+    maintainer: yourusername <you@example.com>
+    description: CLI for DMM and DUGA affiliate APIs
+    license: MIT
+    formats:
+      - deb
+      - rpm
+    bindir: /usr/bin
+
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+release:
+  github:
+    owner: yourusername
+    name: av-cli
+  draft: false
+  prerelease: auto
+  name_template: "v{{.Version}}"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+
+brews:
+  - name: av-cli
+    repository:
+      owner: yourusername
+      name: homebrew-tap
+    commit_author:
+      name: goreleaserbot
+      email: goreleaser@example.com
+    homepage: https://github.com/yourusername/av-cli
+    description: CLI for DMM and DUGA affiliate APIs
+    install: |
+      bin.install "av-cli"
+    test: |
+      system "#{bin}/av-cli", "--help"

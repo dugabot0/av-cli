@@ -154,6 +154,24 @@ type Item struct {
 	SampleImages *SampleImages `json:"sampleImageURL,omitempty"`
 	Prices       *ItemPrices `json:"prices,omitempty"`
 	Date         string      `json:"date"`
+	ItemInfo     *ItemInfo   `json:"iteminfo,omitempty"`
+}
+
+type ItemInfo struct {
+	Genre    []ItemInfoEntry `json:"genre,omitempty"`
+	Series   []ItemInfoEntry `json:"series,omitempty"`
+	Maker    []ItemInfoEntry `json:"maker,omitempty"`
+	Actress  []ItemInfoEntry `json:"actress,omitempty"`
+	Director []ItemInfoEntry `json:"director,omitempty"`
+	Label    []ItemInfoEntry `json:"label,omitempty"`
+	Author   []ItemInfoEntry `json:"author,omitempty"`
+	Artist   []ItemInfoEntry `json:"artist,omitempty"`
+}
+
+type ItemInfoEntry struct {
+	ID   any    `json:"id"`
+	Name string `json:"name"`
+	Ruby string `json:"ruby,omitempty"`
 }
 
 type ItemReview struct {
